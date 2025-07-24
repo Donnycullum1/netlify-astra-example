@@ -1,0 +1,35 @@
+<script>
+  // Store premium status locally
+  localStorage.setItem('isPremium', 'true');
+  window.location.href = '/'; // Redirect back to homepage
+</script>
+function checkPremiumStatus() {
+  const isPremium = localStorage.getItem('isPremium') === 'true';
+  const premiumBadge = document.getElementById('premium-badge');
+  const upgradeBtn = document.getElementById('buyPremium');
+
+  if (isPremium) {
+    premiumBadge.style.display = 'block';
+    upgradeBtn.style.display = 'none';
+    // Enable premium-only features here
+  } else {
+    premiumBadge.style.display = 'none';
+    upgradeBtn.style.display = 'inline-block';
+  }
+}
+
+// Run it on load
+checkPremiumStatus();
+<!-- Premium Indicator -->
+<div id="premium-badge" style="display:none; margin-top:10px; color:#04AA6D; font-weight:bold;">
+  ✅ Premium Member
+</div>
+function addToHistory(url) {
+  if (url && !history.includes(url)) {
+    history.unshift(url);
+    if (history.length > 5) {
+      history.pop();
+    }
+    renderHistory();
+  }
+}
